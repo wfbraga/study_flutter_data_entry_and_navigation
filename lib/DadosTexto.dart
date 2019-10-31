@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import 'DadosTexto.dart';
 
-class CampoTexto extends StatefulWidget {
+class DadosTexto extends StatefulWidget {
+
+  String name;
+  String birthdate;
+
+  DadosTexto(this.name, this.birthdate);
+
   @override
-  _CampoTextoState createState() => _CampoTextoState();
+  _DadosTextoState createState() => _DadosTextoState();
 }
 
-class _CampoTextoState extends State<CampoTexto> {
+class _DadosTextoState extends State<DadosTexto> {
 
   TextEditingController _nameTextEditingController = TextEditingController();
   TextEditingController _birthEditingCOntroller = TextEditingController();
@@ -15,14 +20,26 @@ class _CampoTextoState extends State<CampoTexto> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cadastro Membro"),
+        title: Text("Confira os Dados"),
       ),
       body: Column(
         children: <Widget>[
           Text(
-            'Digite os Dados',
+            'Os dados passado são:',
             style: TextStyle(
               fontSize: 20,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: Text(
+                "Nome: ${widget.name}"
+              ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: Text(
+                "Nascimento: ${widget.birthdate}"
             ),
           ),
           Padding(
@@ -68,10 +85,6 @@ class _CampoTextoState extends State<CampoTexto> {
             child: Text('Salvar'),
             color: Colors.lightGreen,
             onPressed: (){
-
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) => DadosTexto(_nameTextEditingController.text, _birthEditingCOntroller.text)
-              ));
               print("Nome do Membro: " + _nameTextEditingController.text);
               print("Data de Nascimento: " + _birthEditingCOntroller.text);
             },
